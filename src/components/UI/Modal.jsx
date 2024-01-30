@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-export default function Modal({ isOpen, children }) {
+export default function Modal({ isOpen, children, onClose = null }) {
   const modalRef = useRef();
   useEffect(() => {
     if (isOpen) {
@@ -11,7 +11,7 @@ export default function Modal({ isOpen, children }) {
     };
   }, [isOpen]);
   return createPortal(
-    <dialog ref={modalRef} className="cart modal">
+    <dialog ref={modalRef} className="cart modal" onClose={onClose}>
       {children}
     </dialog>,
     document.getElementById("modal")

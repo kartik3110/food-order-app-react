@@ -10,7 +10,12 @@ export default function Cart() {
     0
   );
   return (
-    <Modal isOpen={progressCtx.progress === "cart"}>
+    <Modal
+      isOpen={progressCtx.progress === "cart"}
+      onClose={
+        progressCtx.progress === "cart" ? () => progressCtx.hide() : null
+      }
+    >
       <h2>Cart</h2>
       <ul>
         {cartCtx.cartItems.map((meal) => (

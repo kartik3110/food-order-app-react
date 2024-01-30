@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-
 // inital value is not mandatory. it just provides better autoComplete
 const cartContext = createContext({
   cartItems: [],

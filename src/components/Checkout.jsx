@@ -3,6 +3,9 @@ import { useContext } from "react";
 import { ProgressContext } from "../context/ProgressContext";
 import cartContext from "../context/cartContext";
 import { useForm } from "react-hook-form";
+
+const Star = <span style={{ color: "red" }}>*</span>;
+
 export default function Checkout() {
   const progressCtx = useContext(ProgressContext);
   const cartCtx = useContext(cartContext);
@@ -23,12 +26,15 @@ export default function Checkout() {
     alert(JSON.stringify(data, null, 2));
   };
   return (
-    <Modal isOpen={progressCtx.progress === "checkout"}>
+    <Modal
+      isOpen={progressCtx.progress === "checkout"}
+      onClose={() => progressCtx.hide()}
+    >
       <h2>Checkout</h2>
       <p>Total Price: ${totalPrice}</p>
       <form onSubmit={handleSubmit(mySubmitHandler)}>
         <div className="control">
-          <label htmlFor="fullName">Full Name: </label>
+          <label htmlFor="fullName">{Star}Full Name: </label>
           <input
             {...register("fullName")}
             id="fullName"
@@ -36,13 +42,13 @@ export default function Checkout() {
           />
         </div>
         <div className="control">
-          <label htmlFor="email">Email Id: </label>
+          <label htmlFor="email">{Star}Email Id: </label>
 
           <input {...register("email")} id="email" placeholder="Email" />
         </div>
         <div className="control-row">
           <div className="control">
-            <label htmlFor="postalCode">Postal Code: </label>
+            <label htmlFor="postalCode">{Star}Postal Code: </label>
             <input
               {...register("postalCode")}
               id="postalCode"
@@ -50,13 +56,13 @@ export default function Checkout() {
             />
           </div>
           <div className="control">
-            <label htmlFor="city">City: </label>
+            <label htmlFor="city">{Star}City: </label>
             <input {...register("city")} id="city" placeholder="City" />
           </div>
         </div>
 
         <div className="control">
-          <label htmlFor="address">Address: </label>
+          <label htmlFor="address">{Star}Address: </label>
 
           <input {...register("address")} id="address" placeholder="Address" />
         </div>
